@@ -19,6 +19,7 @@ BuildRequires:  gtk+2-devel gtkmm2.4-devel
 BuildRequires:  sndfile-devel jackit-devel
 BuildRequires:  libzita-convolver-devel boost-devel
 BuildRequires:  faust
+BuildRequires:  intltool gettext-devel
 Requires:       ladspa
 Conflicts:      guitarix
 
