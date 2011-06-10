@@ -20,7 +20,7 @@ BuildRequires:  sndfile-devel jackit-devel
 BuildRequires:  libzita-convolver-devel boost-devel
 BuildRequires:  faust
 Requires:       ladspa
-Obsoletes:      guitarix
+Conflicts:      guitarix
 
 %description
 guitarix is a simple Linux Rock Guitar Amplifier for the Jack Audio
