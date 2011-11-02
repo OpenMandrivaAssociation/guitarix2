@@ -35,7 +35,13 @@ impulse response, vibrato, chorus, delay , crybaby(wah) and echo.
 %setup -q
 
 %build
-./waf configure --prefix=%{_prefix} --ladspadir=%ladspadir --faust
+
+./waf -vv configure --prefix=%{_prefix}                                      \
+      --cxxflags="-std=c++0x -fomit-frame-pointer -ftree-loop-linear         \
+      -ffinite-math-only -fno-math-errno -fno-signed-zeros -fstrength-reduce \
+      %{optflags}"                                                           \
+      --ladspadir=%ladspadir
+
 ./waf build
 
 %install
