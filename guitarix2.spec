@@ -1,6 +1,6 @@
 %define name            guitarix2
 %define version         0.18.0
-%define release         %mkrel 1
+%define release         %mkrel 2
 
 %define ladspadir       %{_libdir}/ladspa
 
@@ -17,7 +17,7 @@ Group:          Sound
 BuildRequires:  sigc++2.0-devel fftw3-devel ladspa-devel
 BuildRequires:  gtk+2-devel gtkmm2.4-devel
 BuildRequires:  sndfile-devel jackit-devel
-BuildRequires:  libzita-convolver-devel boost-devel
+BuildRequires:  libzita-convolver-devel libzita-resampler-devel boost-devel
 BuildRequires:  faust
 BuildRequires:  intltool gettext-devel desktop-file-utils
 Requires:       ladspa
