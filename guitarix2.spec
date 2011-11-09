@@ -1,6 +1,6 @@
 %define name            guitarix2
-%define version         0.18.0
-%define release         %mkrel 2
+%define version         0.20.1
+%define release         %mkrel 1
 
 %define ladspadir       %{_libdir}/ladspa
 
@@ -32,17 +32,17 @@ overdrive, oversample, anti-aliase, fuzz, balance, distortion, freeverb,
 impulse response, vibrato, chorus, delay , crybaby(wah) and echo.
 
 %prep
-%setup -q
+%setup -q -n guitarix-%{version}
 
 %build
 
-./waf -vv configure --prefix=%{_prefix}                                      \
-      --cxxflags="-std=c++0x -fomit-frame-pointer -ftree-loop-linear         \
-      -ffinite-math-only -fno-math-errno -fno-signed-zeros -fstrength-reduce \
-      %{optflags}"                                                           \
-      --ladspadir=%ladspadir
+./waf -vv configure --prefix=%{_prefix} --ladspadir=%ladspadir -j1
+#      --cxxflags="-std=c++0x -fomit-frame-pointer -ftree-loop-linear         \
+#      -ffinite-math-only -fno-math-errno -fno-signed-zeros -fstrength-reduce \
+#      %{optflags}"                                                           \
 
-./waf build
+
+./waf build -j1
 
 %install
 rm -rf %{buildroot}
