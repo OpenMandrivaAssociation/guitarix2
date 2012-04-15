@@ -1,6 +1,6 @@
 %define name            guitarix2
 %define version         0.22.0
-%define release         1
+%define release         2
 
 %define ladspadir       %{_libdir}/ladspa
 
