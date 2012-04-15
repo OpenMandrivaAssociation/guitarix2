@@ -1,6 +1,6 @@
 %define name            guitarix2
-%define version         0.20.1
-%define release         %mkrel 1
+%define version         0.22.0
+%define release         1
 
 %define ladspadir       %{_libdir}/ladspa
 
@@ -28,8 +28,8 @@ guitarix is a simple Linux Rock Guitar Amplifier for the Jack Audio
 Connektion Kit with one input and two outputs. Designed to get nice
 thrash/metal/rock/blues guitar sounds. There are controls for bass,
 middle, treble, gain (in/out), compressor, preamp, tube's, drive,
-overdrive, oversample, anti-aliase, fuzz, balance, distortion, freeverb,
-impulse response, vibrato, chorus, delay , crybaby(wah) and echo.
+overdrive, oversample, anti-alias, fuzz, balance, distortion, freeverb,
+impulse response, vibrato, chorus, delay , cry-baby(wah) and echo.
 
 %prep
 %setup -q -n guitarix-%{version}
@@ -61,10 +61,11 @@ rm -rf %{buildroot}
 %{_datadir}/pixmaps/*.png
 %{_datadir}/gx_head/skins/*.jpg
 %{_datadir}/gx_head/skins/*.png
+%{_datadir}/gx_head/skins/*.svg
 %{_datadir}/gx_head/skins/*.rc
-%{_datadir}/gx_head/skins/*_rc
 %{_datadir}/gx_head/sounds/*.wav
-%{_datadir}/gx_head/builder/*.glade
+%{_datadir}/gx_head/builder/*
+%{_datadir}/gx_head/factorysettings/*
 %{_datadir}/applications/guitarix.desktop
 %{_localedir}/es/LC_MESSAGES/guitarix.mo
 %{_localedir}/fr/LC_MESSAGES/guitarix.mo
