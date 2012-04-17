@@ -1,13 +1,9 @@
-%define name            guitarix2
-%define version         0.22.0
-%define release         2
-
 %define ladspadir       %{_libdir}/ladspa
 
-Name:           %{name}
+Name:           guitarix2
 Summary:        Guitar effect processor for JACK
-Version:        %{version}
-Release:        %{release}
+Version:        0.22.0
+Release:        3
 
 Source:         http://prdownloads.sourceforge.net/guitarix/%{name}-%{version}.tar.bz2
 URL:            http://guitarix.sourceforge.net/
@@ -20,16 +16,27 @@ BuildRequires:  sndfile-devel jackit-devel
 BuildRequires:  libzita-convolver-devel libzita-resampler-devel boost-devel
 BuildRequires:  faust
 BuildRequires:  intltool gettext-devel desktop-file-utils
-Requires:       ladspa
+Requires:       %{name}-plugins-ladspa = %{version}
 Conflicts:      guitarix
 
 %description
-guitarix is a simple Linux Rock Guitar Amplifier for the Jack Audio
+Guitarix is a simple Linux Rock Guitar Amplifier for the Jack Audio
 Connektion Kit with one input and two outputs. Designed to get nice
 thrash/metal/rock/blues guitar sounds. There are controls for bass,
 middle, treble, gain (in/out), compressor, preamp, tube's, drive,
 overdrive, oversample, anti-alias, fuzz, balance, distortion, freeverb,
 impulse response, vibrato, chorus, delay , cry-baby(wah) and echo.
+
+%package plugins-ladspa
+Summary:        LADSPA plugins coming with guitarix2
+Group:          Sound
+
+Requires:       ladspa
+
+%description plugins-ladspa
+Guitarix is a simple Linux Rock Guitar Amplifier for the Jack Audio
+Connektion Kit. This package includes the LADSPA plugins for the amp,
+which can be used with other LADSPA hosts as well.
 
 %prep
 %setup -q -n guitarix-%{version}
@@ -70,5 +77,8 @@ rm -rf %{buildroot}
 %{_localedir}/es/LC_MESSAGES/guitarix.mo
 %{_localedir}/fr/LC_MESSAGES/guitarix.mo
 %{_localedir}/it/LC_MESSAGES/guitarix.mo
+
+%files plugins-ladspa
+%defattr(-,root,root)
 %ladspadir/*.so
 %{_datadir}/ladspa/rdf/*.rdf
