@@ -2,8 +2,8 @@
 
 Name:           guitarix2
 Summary:        Guitar effect processor for JACK
-Version:        0.22.0
-Release:        3
+Version:        0.22.3
+Release:        1
 
 Source:         http://prdownloads.sourceforge.net/guitarix/%{name}-%{version}.tar.bz2
 URL:            http://guitarix.sourceforge.net/
@@ -17,7 +17,8 @@ BuildRequires:  libzita-convolver-devel libzita-resampler-devel boost-devel
 BuildRequires:  faust
 BuildRequires:  intltool gettext-devel desktop-file-utils
 Requires:       %{name}-plugins-ladspa = %{version}
-Conflicts:      guitarix
+Provides:       guitarix = %{version}-%{release}
+Obsoletes:      guitarix < %{version}-%{release}
 
 %description
 Guitarix is a simple Linux Rock Guitar Amplifier for the Jack Audio
