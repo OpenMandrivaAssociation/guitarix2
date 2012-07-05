@@ -14,6 +14,7 @@ BuildRequires:  sigc++2.0-devel fftw3-devel ladspa-devel
 BuildRequires:  gtk+2-devel gtkmm2.4-devel
 BuildRequires:  sndfile-devel jackit-devel
 BuildRequires:  libzita-convolver-devel libzita-resampler-devel boost-devel
+BuildRequires:  liblrdf-devel
 BuildRequires:  faust
 BuildRequires:  intltool gettext-devel desktop-file-utils
 Requires:       %{name}-plugins-ladspa = %{version}
