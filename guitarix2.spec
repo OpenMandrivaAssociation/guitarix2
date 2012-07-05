@@ -2,7 +2,7 @@
 
 Name:           guitarix2
 Summary:        Guitar effect processor for JACK
-Version:        0.22.3
+Version:        0.23.1
 Release:        1
 
 Source:         http://prdownloads.sourceforge.net/guitarix/%{name}-%{version}.tar.bz2
