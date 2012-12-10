@@ -84,3 +84,58 @@ rm -rf %{buildroot}
 %defattr(-,root,root)
 %ladspadir/*.so
 %{_datadir}/ladspa/rdf/*.rdf
+
+
+%changelog
+* Tue Jul 31 2012 Frank Kober <emuse@mandriva.org> 0.23.3-1
++ Revision: 811492
+- new version 0.23.3
+
+* Thu Jul 12 2012 Frank Kober <emuse@mandriva.org> 0.23.2-1
++ Revision: 809068
+- new version 0.23.2
+
+* Thu Jul 05 2012 Frank Kober <emuse@mandriva.org> 0.23.1-1
++ Revision: 808161
+- new version 0.23.1
+
+* Fri May 18 2012 Frank Kober <emuse@mandriva.org> 0.22.3-1
++ Revision: 799574
+- new version 0.22.3 (bugfixes)
+
+* Tue Apr 17 2012 Frank Kober <emuse@mandriva.org> 0.22.0-3
++ Revision: 791535
+- provide separate package for guitarix ladspa plugins
+
+* Sun Apr 15 2012 Frank Kober <emuse@mandriva.org> 0.22.0-2
++ Revision: 791118
+- rebuild using distro-own packages of zita-convolver and zita-resampler
+
+* Sun Apr 15 2012 Frank Kober <emuse@mandriva.org> 0.22.0-1
++ Revision: 791085
+- new version 0.22.0
+
+* Wed Nov 09 2011 Frank Kober <emuse@mandriva.org> 0.20.1-1
++ Revision: 729562
+- new version 0.20.1
+  o try build with original waf configure forcing single CPU (works locally)
+
+* Wed Nov 02 2011 Alexander Khrukin <akhrukin@mandriva.org> 0.18.0-2
++ Revision: 712244
+- buildfix or we always have Unable to open file  osc.lib ERROR
+- added libzita-resampler-devel to req section
+
+* Wed Aug 10 2011 Frank Kober <emuse@mandriva.org> 0.18.0-1
++ Revision: 693878
+- new version 0.18.0
+
+* Sat Jul 09 2011 Frank Kober <emuse@mandriva.org> 0.17.0-1
++ Revision: 689409
+- new version 0.17.0 (mainly bugfixes, some new features)
+
+* Fri Jun 10 2011 Frank Kober <emuse@mandriva.org> 0.16.0-1
++ Revision: 684098
+- added intltool BR
+- Conflicts old version in guitarix package
+- import guitarix2
+
