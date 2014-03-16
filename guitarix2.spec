@@ -18,6 +18,7 @@ BuildRequires:  libzita-convolver-devel libzita-resampler-devel boost-devel
 BuildRequires:  liblrdf-devel
 BuildRequires:  faust
 BuildRequires:  intltool gettext-devel desktop-file-utils
+BuildRequires:	curl-devel
 Requires:       %{name}-plugins-ladspa = %{version}
 Provides:       guitarix = %{version}-%{release}
 Obsoletes:      guitarix < %{version}-%{release}
