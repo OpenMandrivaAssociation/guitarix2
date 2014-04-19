@@ -1,27 +1,40 @@
-%define ladspadir       %{_libdir}/ladspa
-%define debug_package %{nil}
+%define debug_package          %{nil}
 
-Name:           guitarix2
-Summary:        Guitar effect processor for JACK
-Version:        0.23.3
-Release:        1
+%define ladspadir %{_libdir}/ladspa
+%define lv2dir %{_libdir}/lv2
 
-Source:         http://prdownloads.sourceforge.net/guitarix/%{name}-%{version}.tar.bz2
-URL:            http://guitarix.sourceforge.net/
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-buildroot
-License:        GPLv2
-Group:          Sound
-BuildRequires:  sigc++2.0-devel fftw3-devel ladspa-devel
-BuildRequires:  gtk+2.0-devel gtkmm2.4-devel
-BuildRequires:  sndfile-devel jackit-devel
-BuildRequires:  libzita-convolver-devel libzita-resampler-devel boost-devel
-BuildRequires:  liblrdf-devel
-BuildRequires:  faust
-BuildRequires:  intltool gettext-devel desktop-file-utils
-BuildRequires:	curl-devel
-Requires:       %{name}-plugins-ladspa = %{version}
-Provides:       guitarix = %{version}-%{release}
-Obsoletes:      guitarix < %{version}-%{release}
+%define major 0
+%define libgxw %mklibname gxw %{major}
+%define libgxwmm %mklibname gxwmm %{major}
+
+Summary:	Guitar effect processor for JACK
+Name:		guitarix2
+Version:	0.28.1
+Release:	2
+License:	GPLv2+
+Group:		Sound
+Url:		http://guitarix.sourceforge.net/
+Source0:	http://prdownloads.sourceforge.net/guitarix/%{name}-%{version}.tar.bz2
+BuildRequires:	desktop-file-utils
+BuildRequires:	faust
+BuildRequires:	intltool
+BuildRequires:	boost-devel
+BuildRequires:	gettext-devel
+BuildRequires:	ladspa-devel
+BuildRequires:	libzita-convolver-devel
+BuildRequires:	libzita-resampler-devel
+BuildRequires:	pkgconfig(avahi-gobject)
+BuildRequires:	pkgconfig(fftw3)
+BuildRequires:	pkgconfig(gdkmm-2.4)
+BuildRequires:	pkgconfig(gtk+-2.0)
+BuildRequires:	pkgconfig(jack)
+BuildRequires:	pkgconfig(lrdf)
+BuildRequires:	pkgconfig(lv2)
+BuildRequires:	pkgconfig(sigc++-2.0)
+BuildRequires:	pkgconfig(sndfile)
+Requires:	%{name}-plugins-ladspa = %{EVRD}
+Provides:	guitarix = %{EVRD}
+Obsoletes:	%{_lib}gxw-devel < 0.28.1-2
 
 %description
 Guitarix is a simple Linux Rock Guitar Amplifier for the Jack Audio
@@ -31,42 +44,7 @@ middle, treble, gain (in/out), compressor, preamp, tube's, drive,
 overdrive, oversample, anti-alias, fuzz, balance, distortion, freeverb,
 impulse response, vibrato, chorus, delay , cry-baby(wah) and echo.
 
-%package plugins-ladspa
-Summary:        LADSPA plugins coming with guitarix2
-Group:          Sound
-
-Requires:       ladspa
-
-%description plugins-ladspa
-Guitarix is a simple Linux Rock Guitar Amplifier for the Jack Audio
-Connektion Kit. This package includes the LADSPA plugins for the amp,
-which can be used with other LADSPA hosts as well.
-
-%prep
-%setup -q -n guitarix-%{version}
-
-%build
-
-./waf -vv configure --prefix=%{_prefix} --ladspadir=%ladspadir -j1
-#      --cxxflags="-std=c++0x -fomit-frame-pointer -ftree-loop-linear         \
-#      -ffinite-math-only -fno-math-errno -fno-signed-zeros -fstrength-reduce \
-#      %{optflags}"                                                           \
-
-
-./waf build -j1
-
-%install
-rm -rf %{buildroot}
-./waf install --destdir=%{buildroot}
-desktop-file-install --add-category="X-MandrivaLinux-Multimedia-Sound;" \
-                     --remove-category="X-Jack;" \
-                     --remove-category="Midi;" \
-                     --dir %{buildroot}%{_datadir}/applications %{buildroot}%{_datadir}/applications/*
-%clean
-rm -rf %{buildroot}
-
-%files
-%defattr(-,root,root)
+%files -f guitarix.lang
 %doc README
 %{_bindir}/guitarix
 %{_datadir}/pixmaps/*.png
@@ -74,70 +52,99 @@ rm -rf %{buildroot}
 %{_datadir}/gx_head/skins/*.png
 %{_datadir}/gx_head/skins/*.svg
 %{_datadir}/gx_head/skins/*.rc
-%{_datadir}/gx_head/sounds/*.wav
+%{_datadir}/gx_head/skins/LV2/*.rc
+%{_datadir}/gx_head/sounds/*
 %{_datadir}/gx_head/builder/*
 %{_datadir}/gx_head/factorysettings/*
 %{_datadir}/applications/guitarix.desktop
-%{_localedir}/es/LC_MESSAGES/guitarix.mo
-%{_localedir}/fr/LC_MESSAGES/guitarix.mo
-%{_localedir}/it/LC_MESSAGES/guitarix.mo
+
+#----------------------------------------------------------------------------
+
+%package plugins-ladspa
+Summary:	LADSPA plugins coming with guitarix2
+Group:		Sound
+Requires:	ladspa
+
+%description plugins-ladspa
+Guitarix is a simple Linux Rock Guitar Amplifier for the Jack Audio
+Connektion Kit. This package includes the LADSPA plugins for the amp,
+which can be used with other LADSPA hosts as well.
 
 %files plugins-ladspa
-%defattr(-,root,root)
-%ladspadir/*.so
+%dir %{ladspadir}
+%{ladspadir}/*.so
 %{_datadir}/ladspa/rdf/*.rdf
 
+#----------------------------------------------------------------------------
 
-%changelog
-* Tue Jul 31 2012 Frank Kober <emuse@mandriva.org> 0.23.3-1
-+ Revision: 811492
-- new version 0.23.3
+%package plugins-lv2
+Summary:	LV2 plugins coming with guitarix2
+Group:		Sound
+Requires:	lv2
 
-* Thu Jul 12 2012 Frank Kober <emuse@mandriva.org> 0.23.2-1
-+ Revision: 809068
-- new version 0.23.2
+%description plugins-lv2
+Guitarix is a simple Linux Rock Guitar Amplifier for the Jack Audio
+Connektion Kit. This package includes the LV2 plugins for the amp,
+which can be used with LV2 hosts.
 
-* Thu Jul 05 2012 Frank Kober <emuse@mandriva.org> 0.23.1-1
-+ Revision: 808161
-- new version 0.23.1
+%files plugins-lv2
+%dir %{_libdir}/lv2
+%{_libdir}/lv2/*
+%{_datadir}/gx_head/skins/LV2/*.png
 
-* Fri May 18 2012 Frank Kober <emuse@mandriva.org> 0.22.3-1
-+ Revision: 799574
-- new version 0.22.3 (bugfixes)
+#----------------------------------------------------------------------------
 
-* Tue Apr 17 2012 Frank Kober <emuse@mandriva.org> 0.22.0-3
-+ Revision: 791535
-- provide separate package for guitarix ladspa plugins
+%package -n %{libgxw}
+Summary:	Libraries required for guitarix LV2 plugins
+Group:		Sound
+Conflicts:	%{_lib}gxw1 < 0.28.1-2
+Obsoletes:	%{_lib}gxw1 < 0.28.1-2
 
-* Sun Apr 15 2012 Frank Kober <emuse@mandriva.org> 0.22.0-2
-+ Revision: 791118
-- rebuild using distro-own packages of zita-convolver and zita-resampler
+%description -n %{libgxw}
+Libraries required for guitarix LV2 plugins.
 
-* Sun Apr 15 2012 Frank Kober <emuse@mandriva.org> 0.22.0-1
-+ Revision: 791085
-- new version 0.22.0
+%files -n %{libgxw}
+%{_libdir}/libgxw.so.%{major}*
 
-* Wed Nov 09 2011 Frank Kober <emuse@mandriva.org> 0.20.1-1
-+ Revision: 729562
-- new version 0.20.1
-  o try build with original waf configure forcing single CPU (works locally)
+#----------------------------------------------------------------------------
 
-* Wed Nov 02 2011 Alexander Khrukin <akhrukin@mandriva.org> 0.18.0-2
-+ Revision: 712244
-- buildfix or we always have Unable to open file  osc.lib ERROR
-- added libzita-resampler-devel to req section
+%package -n %{libgxwmm}
+Summary:	Libraries required for guitarix LV2 plugins
+Group:		Sound
+Conflicts:	%{_lib}gxw1 < 0.28.1-2
+Obsoletes:	%{_lib}gxw1 < 0.28.1-2
 
-* Wed Aug 10 2011 Frank Kober <emuse@mandriva.org> 0.18.0-1
-+ Revision: 693878
-- new version 0.18.0
+%description -n %{libgxwmm}
+Libraries required for guitarix LV2 plugins.
 
-* Sat Jul 09 2011 Frank Kober <emuse@mandriva.org> 0.17.0-1
-+ Revision: 689409
-- new version 0.17.0 (mainly bugfixes, some new features)
+%files -n %{libgxwmm}
+%{_libdir}/libgxwmm.so.%{major}*
 
-* Fri Jun 10 2011 Frank Kober <emuse@mandriva.org> 0.16.0-1
-+ Revision: 684098
-- added intltool BR
-- Conflicts old version in guitarix package
-- import guitarix2
+#----------------------------------------------------------------------------
+
+%prep
+%setup -q -n guitarix-%{version}
+
+%build
+./waf configure \
+	--prefix=%{_prefix} \
+	--libdir=%{_libdir} \
+	--ladspadir=%{ladspadir} \
+	--lv2dir=%{lv2dir}
+
+./waf build
+
+%install
+./waf install --destdir=%{buildroot}
+desktop-file-install \
+	--remove-category="X-Jack;" \
+	--remove-category="Midi;" \
+	--dir %{buildroot}%{_datadir}/applications \
+	%{buildroot}%{_datadir}/applications/*
+
+# These are not needed, we don't have header files to use
+rm -f %{buildroot}%{_libdir}/libgxw.so
+rm -f %{buildroot}%{_libdir}/libgxwmm.so
+
+%find_lang guitarix
 
