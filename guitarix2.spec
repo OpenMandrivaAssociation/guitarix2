@@ -9,12 +9,13 @@
 
 Summary:	Guitar effect processor for JACK
 Name:		guitarix2
-Version:	0.28.1
-Release:	3
+Version:	0.42.1
+Release:	1
 License:	GPLv2+
 Group:		Sound
-Url:		http://guitarix.sourceforge.net/
-Source0:	http://prdownloads.sourceforge.net/guitarix/%{name}-%{version}.tar.bz2
+Url:		https://guitarix.org
+Source0:       https://downloads.sourceforge.net/project/guitarix/guitarix/guitarix2-%{version}.tar.xz
+
 BuildRequires:	desktop-file-utils
 BuildRequires:	faust
 BuildRequires:	intltool
@@ -25,13 +26,28 @@ BuildRequires:	libzita-convolver-devel
 BuildRequires:	libzita-resampler-devel
 BuildRequires:	pkgconfig(avahi-gobject)
 BuildRequires:	pkgconfig(fftw3)
-BuildRequires:	pkgconfig(gdkmm-2.4)
-BuildRequires:	pkgconfig(gtk+-2.0)
 BuildRequires:	pkgconfig(jack)
 BuildRequires:	pkgconfig(lrdf)
 BuildRequires:	pkgconfig(lv2)
 BuildRequires:	pkgconfig(sigc++-2.0)
 BuildRequires:	pkgconfig(sndfile)
+
+BuildRequires: pkgconfig(bluez)
+BuildRequires: pkgconfig(libcurl)
+BuildRequires: pkgconfig(liblo)
+BuildRequires: pkgconfig(lilv-0)
+BuildRequires: pkgconfig(fftw3f)
+BuildRequires: gperf
+BuildRequires: eigen3-devel
+BuildRequires: python
+BuildRequires: sassc
+BuildRequires: waf
+BuildRequires: zita-convolver-devel
+BuildRequires: zita-resampler-devel
+BuildRequires: pkgconfig(glibmm-2.4)
+BuildRequires: pkgconfig(gtkmm-3.0)
+BuildRequires: pkgconfig(gtk+-3.0)
+
 Requires:	%{name}-plugins-ladspa = %{EVRD}
 Provides:	guitarix = %{EVRD}
 Obsoletes:	%{_lib}gxw-devel < 0.28.1-2
