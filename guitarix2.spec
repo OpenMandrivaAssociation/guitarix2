@@ -22,8 +22,8 @@ BuildRequires:	intltool
 BuildRequires:	boost-devel
 BuildRequires:	gettext-devel
 BuildRequires:	ladspa-devel
-BuildRequires:	libzita-convolver-devel
-BuildRequires:	libzita-resampler-devel
+#BuildRequires:	libzita-convolver-devel
+#BuildRequires:	libzita-resampler-devel
 BuildRequires:	pkgconfig(avahi-gobject)
 BuildRequires:	pkgconfig(fftw3)
 BuildRequires:	pkgconfig(jack)
