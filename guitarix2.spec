@@ -23,7 +23,7 @@ BuildRequires:	boost-devel
 BuildRequires:	gettext-devel
 BuildRequires:	ladspa-devel
 BuildRequires:	libzita-convolver-devel
-#BuildRequires:	libzita-resampler-devel
+BuildRequires:	libzita-resampler-devel
 BuildRequires:	pkgconfig(avahi-gobject)
 BuildRequires:	pkgconfig(fftw3)
 BuildRequires:	pkgconfig(jack)
@@ -42,8 +42,6 @@ BuildRequires: eigen3-devel
 BuildRequires: python
 BuildRequires: sassc
 BuildRequires: waf
-#BuildRequires: zita-convolver-devel
-#BuildRequires: zita-resampler-devel
 BuildRequires: pkgconfig(glibmm-2.4)
 BuildRequires: pkgconfig(gtkmm-3.0)
 BuildRequires: pkgconfig(gtk+-3.0)
