@@ -9,7 +9,7 @@
 
 Summary:	Guitar effect processor for JACK
 Name:		guitarix2
-Version:	0.42.1
+Version:	0.43.1
 Release:	1
 License:	GPLv2+
 Group:		Sound
