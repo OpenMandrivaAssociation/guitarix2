@@ -31,7 +31,7 @@ BuildRequires:	pkgconfig(lrdf)
 BuildRequires:	pkgconfig(lv2)
 BuildRequires:	pkgconfig(sigc++-2.0)
 BuildRequires:	pkgconfig(sndfile)
-
+BuildRequires: pkgconfig(raptor2)
 BuildRequires: pkgconfig(bluez)
 BuildRequires: pkgconfig(libcurl)
 BuildRequires: pkgconfig(liblo)
