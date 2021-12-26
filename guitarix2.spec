@@ -144,6 +144,7 @@ Libraries required for guitarix LV2 plugins.
 	--prefix=%{_prefix} \
 	--libdir=%{_libdir} \
 	--ladspadir=%{ladspadir} \
+	--no-faust
 	--lv2dir=%{lv2dir}
 
 ./waf build
