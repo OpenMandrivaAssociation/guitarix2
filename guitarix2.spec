@@ -140,6 +140,8 @@ Libraries required for guitarix LV2 plugins.
 %setup -q -n guitarix-%{version}
 
 %build
+export CC=gcc
+export CXX=g++
 ./waf configure \
 	--prefix=%{_prefix} \
 	--libdir=%{_libdir} \
